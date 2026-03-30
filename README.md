@@ -1,7 +1,16 @@
 # Team Communication Processing & Analysis
+
 ### GSoC 2026 Screening — HumanAI / TRIP Lab, University of Alabama
 
 ---
+
+
+
+## Live Demo
+
+**Interactive Dashboard:** [https://swasti2004-gsoc2026-issr-project01-demo-dashboardapp-mnc3pi.streamlit.app/](https://swasti2004-gsoc2026-issr-project01-demo-dashboardapp-mnc3pi.streamlit.app/)
+
+The dashboard provides an interactive interface for the full pipeline — waveform and spectrogram visualization, audio enhancement method comparison, and metric evaluation — without requiring a local Python environment.
 
 ## Overview
 
@@ -40,6 +49,7 @@ jupyter notebook Notebook2_Audio_Enhancement.ipynb
 ```
 
 **Generated at runtime (after running the notebooks):**
+
 ```
 ├── ami_ihm_sample.wav                   # IHM clean reference (~3 min)
 ├── ami_sdm_sample.wav                   # SDM degraded input (~3 min)
@@ -57,15 +67,15 @@ jupyter notebook Notebook2_Audio_Enhancement.ipynb
 
 Answers the two required test questions: *How will the dataset be used?* and *Why is this the best option?*
 
-| Section | Content |
-|---|---|
-| 1 | Selection criteria derived from TRIP Lab's research context |
-| 2 | Scored comparison: AMI vs CHiME-6 vs NOXI vs LibriSpeech |
-| 3 | AMI rationale — multi-mic architecture, scenario meetings, open access |
-| 4 | Data loading — IHM + SDM streams from the same session |
-| 5 | Signal EDA — waveform, spectrogram, SNR distribution, MFCC comparison |
-| 6 | Team dynamics — speech activity, overlap proxy, energy variability |
-| 7 | Structured answers to both required questions with measured values |
+| Section | Content                                                                 |
+| ------- | ----------------------------------------------------------------------- |
+| 1       | Selection criteria derived from TRIP Lab's research context             |
+| 2       | Scored comparison: AMI vs CHiME-6 vs NOXI vs LibriSpeech                |
+| 3       | AMI rationale — multi-mic architecture, scenario meetings, open access |
+| 4       | Data loading — IHM + SDM streams from the same session                 |
+| 5       | Signal EDA — waveform, spectrogram, SNR distribution, MFCC comparison  |
+| 6       | Team dynamics — speech activity, overlap proxy, energy variability     |
+| 7       | Structured answers to both required questions with measured values      |
 
 **Key design choice:** Both IHM (clean headset) and SDM (single distant mic) conditions are loaded from the same session. This enables real acoustic degradation benchmarking with no synthetic noise added.
 
@@ -75,42 +85,42 @@ Answers the two required test questions: *How will the dataset be used?* and *Wh
 
 Primary metric: **Word Error Rate (WER)** via Whisper — directly measures whether enhancement improves transcription.
 
-| Section | Content |
-|---|---|
-| 1 | Load audio |
-| 2 | Baseline — raw IHM–SDM acoustic gap |
-| 3 | Whisper WER baseline before any enhancement |
-| 4 | Five enhancement methods on real SDM audio |
-| 5 | Visual analysis — waveform, spectrogram, PSD |
-| 6 | WER evaluation per method |
-| 6b | NLP analysis — transcript inspection, vocabulary overlap, content-word recovery |
-| 7 | Full metric table — WER + STOI + PESQ + DNSMOS + SNR |
-| 8 | Pipeline ordering analysis |
-| 9 | Conclusion and recommendation |
+| Section | Content                                                                          |
+| ------- | -------------------------------------------------------------------------------- |
+| 1       | Load audio                                                                       |
+| 2       | Baseline — raw IHM–SDM acoustic gap                                            |
+| 3       | Whisper WER baseline before any enhancement                                      |
+| 4       | Five enhancement methods on real SDM audio                                       |
+| 5       | Visual analysis — waveform, spectrogram, PSD                                    |
+| 6       | WER evaluation per method                                                        |
+| 6b      | NLP analysis — transcript inspection, vocabulary overlap, content-word recovery |
+| 7       | Full metric table — WER + STOI + PESQ + DNSMOS + SNR                            |
+| 8       | Pipeline ordering analysis                                                       |
+| 9       | Conclusion and recommendation                                                    |
 
 ---
 
 ## Enhancement Methods
 
-| # | Method | Type |
-|---|---|---|
-| 1 | High-pass filter + normalisation | Classical |
-| 2 | Spectral subtraction | Classical |
-| 3 | Wiener filter | Classical |
-| 4 | NoiseReduce (non-stationary) | DL-inspired |
-| 5 | **Adaptive pipeline** | **Ours** — HP → NoiseReduce → Wiener → normalise |
+| # | Method                           | Type                                                       |
+| - | -------------------------------- | ---------------------------------------------------------- |
+| 1 | High-pass filter + normalisation | Classical                                                  |
+| 2 | Spectral subtraction             | Classical                                                  |
+| 3 | Wiener filter                    | Classical                                                  |
+| 4 | NoiseReduce (non-stationary)     | DL-inspired                                                |
+| 5 | **Adaptive pipeline**      | **Ours** — HP → NoiseReduce → Wiener → normalise |
 
 ---
 
 ## Evaluation Metrics
 
-| Metric | Type | Rationale |
-|---|---|---|
-| **WER** (primary) | Transcription | Directly measures the project's stated goal |
-| STOI | Perceptual | Speech intelligibility |
-| PESQ | Perceptual | ITU-T P.862.2 wideband quality |
-| DNSMOS | Non-intrusive | No reference needed — usable in real studies |
-| SNR | Signal | Baseline comparison only |
+| Metric                  | Type          | Rationale                                     |
+| ----------------------- | ------------- | --------------------------------------------- |
+| **WER** (primary) | Transcription | Directly measures the project's stated goal   |
+| STOI                    | Perceptual    | Speech intelligibility                        |
+| PESQ                    | Perceptual    | ITU-T P.862.2 wideband quality                |
+| DNSMOS                  | Non-intrusive | No reference needed — usable in real studies |
+| SNR                     | Signal        | Baseline comparison only                      |
 
 ---
 
