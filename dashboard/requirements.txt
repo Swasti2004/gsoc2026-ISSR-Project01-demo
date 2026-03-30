@@ -1,0 +1,9 @@
+streamlit
+librosa
+soundfile
+matplotlib
+numpy
+scipy
+noisereduce
+pystoi
+pesq
