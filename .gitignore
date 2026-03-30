@@ -1,0 +1,23 @@
+cat > .gitignore << 'EOF'
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+.venv/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temp audio files
+_tmp_*.wav
+
+# Large model files (Whisper downloads locally)
+*.pt
+EOF
